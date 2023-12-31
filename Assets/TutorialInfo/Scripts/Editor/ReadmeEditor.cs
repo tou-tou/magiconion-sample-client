@@ -11,7 +11,7 @@ using System.Reflection;
 public class ReadmeEditor : Editor
 {
     static string s_ShowedReadmeSessionStateName = "ReadmeEditor.showedReadme";
-    
+
     static string s_ReadmeSourceDirectory = "Assets/TutorialInfo";
 
     const float k_Space = 16f;
@@ -24,10 +24,9 @@ public class ReadmeEditor : Editor
     static void RemoveTutorial()
     {
         if (EditorUtility.DisplayDialog("Remove Readme Assets",
-            
-            $"All contents under {s_ReadmeSourceDirectory} will be removed, are you sure you want to proceed?",
-            "Proceed",
-            "Cancel"))
+                $"All contents under {s_ReadmeSourceDirectory} will be removed, are you sure you want to proceed?",
+                "Proceed",
+                "Cancel"))
         {
             if (Directory.Exists(s_ReadmeSourceDirectory))
             {
@@ -71,7 +70,7 @@ public class ReadmeEditor : Editor
         var assembly = typeof(EditorApplication).Assembly;
         var windowLayoutType = assembly.GetType("UnityEditor.WindowLayout", true);
         var method = windowLayoutType.GetMethod("LoadWindowLayout", BindingFlags.Public | BindingFlags.Static);
-        method.Invoke(null, new object[] { Path.Combine(Application.dataPath, "TutorialInfo/Layout.wlt"), false });
+        method.Invoke(null, new object[] {Path.Combine(Application.dataPath, "TutorialInfo/Layout.wlt"), false});
     }
 
     static Readme SelectReadme()
@@ -81,9 +80,9 @@ public class ReadmeEditor : Editor
         {
             var readmeObject = AssetDatabase.LoadMainAssetAtPath(AssetDatabase.GUIDToAssetPath(ids[0]));
 
-            Selection.objects = new UnityEngine.Object[] { readmeObject };
+            Selection.objects = new UnityEngine.Object[] {readmeObject};
 
-            return (Readme)readmeObject;
+            return (Readme) readmeObject;
         }
         else
         {
@@ -94,7 +93,7 @@ public class ReadmeEditor : Editor
 
     protected override void OnHeaderGUI()
     {
-        var readme = (Readme)target;
+        var readme = (Readme) target;
         Init();
 
         var iconWidth = Mathf.Min(EditorGUIUtility.currentViewWidth / 3f - 20f, 128f);
@@ -106,10 +105,10 @@ public class ReadmeEditor : Editor
                 GUILayout.Space(k_Space);
                 GUILayout.Label(readme.icon, GUILayout.Width(iconWidth), GUILayout.Height(iconWidth));
             }
+
             GUILayout.Space(k_Space);
             GUILayout.BeginVertical();
             {
-
                 GUILayout.FlexibleSpace();
                 GUILayout.Label(readme.title, TitleStyle);
                 GUILayout.FlexibleSpace();
@@ -122,7 +121,7 @@ public class ReadmeEditor : Editor
 
     public override void OnInspectorGUI()
     {
-        var readme = (Readme)target;
+        var readme = (Readme) target;
         Init();
 
         foreach (var section in readme.sections)
@@ -161,40 +160,35 @@ public class ReadmeEditor : Editor
         get { return m_LinkStyle; }
     }
 
-    [SerializeField]
-    GUIStyle m_LinkStyle;
+    [SerializeField] GUIStyle m_LinkStyle;
 
     GUIStyle TitleStyle
     {
         get { return m_TitleStyle; }
     }
 
-    [SerializeField]
-    GUIStyle m_TitleStyle;
+    [SerializeField] GUIStyle m_TitleStyle;
 
     GUIStyle HeadingStyle
     {
         get { return m_HeadingStyle; }
     }
 
-    [SerializeField]
-    GUIStyle m_HeadingStyle;
+    [SerializeField] GUIStyle m_HeadingStyle;
 
     GUIStyle BodyStyle
     {
         get { return m_BodyStyle; }
     }
 
-    [SerializeField]
-    GUIStyle m_BodyStyle;
+    [SerializeField] GUIStyle m_BodyStyle;
 
     GUIStyle ButtonStyle
     {
         get { return m_ButtonStyle; }
     }
 
-    [SerializeField]
-    GUIStyle m_ButtonStyle;
+    [SerializeField] GUIStyle m_ButtonStyle;
 
     void Init()
     {

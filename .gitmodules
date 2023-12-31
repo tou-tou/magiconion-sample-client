@@ -1,0 +1,3 @@
+[submodule "magiconion-sample-server"]
+	path = magiconion-sample-server
+	url = git@github.com:tou-tou/magiconion-sample-server.git
