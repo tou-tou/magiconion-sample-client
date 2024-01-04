@@ -73,6 +73,8 @@ namespace SampleClient
             else
             {
                 var playerObject = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                Material LitMat = Resources.Load<Material>("LitMat");
+                playerObject.GetComponent<Renderer>().material = LitMat;
                 playerObject.name = player.Name;
                 playerObject.transform.SetPositionAndRotation(player.Position,player.Rotation);
                 _players[player.Name] = playerObject;

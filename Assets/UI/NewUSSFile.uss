@@ -1,0 +1,6 @@
+VisualElement {
+}
+
+.connect-button {
+    -unity-text-align: upper-center;
+}
