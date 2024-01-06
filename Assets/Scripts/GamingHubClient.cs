@@ -35,8 +35,12 @@ namespace SampleClient
 
         // methods send to server.
 
-        public ValueTask LeaveAsync()
+        public ValueTask LeaveAsync(string playerName)
         {
+            foreach (var cube in _players)
+            {
+                if(cube.Value.name!=playerName) GameObject.Destroy(cube.Value);
+            }
             return _client.LeaveAsync();
         }
 

@@ -8,7 +8,6 @@ namespace SampleClient
 
         void Update()
         {
-            // 前後の移動
             if (Input.GetKey(KeyCode.W))
             {
                 transform.Translate(Vector3.forward * (moveSpeed * Time.deltaTime));
@@ -18,7 +17,6 @@ namespace SampleClient
                 transform.Translate(Vector3.back * (moveSpeed * Time.deltaTime));
             }
 
-            // 左右の移動
             if (Input.GetKey(KeyCode.A))
             {
                 transform.Translate(Vector3.left * (moveSpeed * Time.deltaTime));
@@ -28,12 +26,11 @@ namespace SampleClient
                 transform.Translate(Vector3.right * (moveSpeed * Time.deltaTime));
             }
 
-            // 上下の移動
-            if (Input.GetKey(KeyCode.Space))
+            if (Input.GetKey(KeyCode.Q))
             {
                 transform.Translate(Vector3.up * (moveSpeed * Time.deltaTime));
             }
-            if (Input.GetKey(KeyCode.LeftShift))
+            if (Input.GetKey(KeyCode.Z))
             {
                 transform.Translate(Vector3.down * (moveSpeed * Time.deltaTime));
             }
