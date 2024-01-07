@@ -12,9 +12,9 @@ namespace SampleClient
         Dictionary<string, GameObject> _players = new Dictionary<string, GameObject>();
 
         IGamingHub _client;
-        
+
         private readonly GameObject _ownPlayer;
-        
+
         public GamingHubClient(GameObject player)
         {
             _ownPlayer = player;
@@ -39,8 +39,9 @@ namespace SampleClient
         {
             foreach (var cube in _players)
             {
-                if(cube.Value.name!=playerName) GameObject.Destroy(cube.Value);
+                if (cube.Value.name != playerName) GameObject.Destroy(cube.Value);
             }
+
             return _client.LeaveAsync();
         }
 
@@ -80,7 +81,7 @@ namespace SampleClient
                 Material LitMat = Resources.Load<Material>("LitMat");
                 playerObject.GetComponent<Renderer>().material = LitMat;
                 playerObject.name = player.Name;
-                playerObject.transform.SetPositionAndRotation(player.Position,player.Rotation);
+                playerObject.transform.SetPositionAndRotation(player.Position, player.Rotation);
                 _players[player.Name] = playerObject;
             }
         }
