@@ -14,7 +14,7 @@
   "dependencies": {
     "com.cysharp.magiconion": "6.0.0",
     "com.neuecc.messagepack": "2.5.140",
-    "com.cysharp.yetanotherhttphandler": "0.1.0",
+    "com.cysharp.yetanotherhttphandler": "1.0.0",
     "com.github-glitchenzo.nugetforunity": "4.0.2",
     "com.magiconion-sample-server.shared": "file:../../magiconion-sample-client/magiconion-sample-server/Shared/",
     "com.unity.collab-proxy": "2.2.0",

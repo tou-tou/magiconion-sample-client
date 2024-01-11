@@ -36,7 +36,14 @@ namespace SampleClient
         public static void OnRuntimeInitialize()
         {
             // Initialize gRPC channel provider when the application is loaded.
-            GrpcChannelProviderHost.Initialize(new DefaultGrpcChannelProvider(new GrpcChannelOptions()));
+            GrpcChannelProviderHost.Initialize(
+                new GrpcNetClientGrpcChannelProvider(() => new GrpcChannelOptions()
+                {
+                    HttpHandler = new Cysharp.Net.Http.YetAnotherHttpHandler()
+                    {
+                        Http2Only = true,
+                    }
+                }));
         }
     }
 }

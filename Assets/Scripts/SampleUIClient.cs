@@ -1,7 +1,9 @@
 using System;
 using Cysharp.Net.Http;
+using Grpc.Core;
 using Shared.Interfaces;
 using Grpc.Net.Client;
+using MagicOnion;
 using MagicOnion.Client;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -12,7 +14,7 @@ namespace SampleClient
     {
         [SerializeField] GameObject playerObject;
         private GamingHubClient _hubClient;
-        private GrpcChannel _channel;
+        private ChannelBase _channel;
 
         private TextField nameField;
         private TextField roomField;
@@ -20,17 +22,8 @@ namespace SampleClient
         
         async void Start()
         {
-            var handler = new YetAnotherHttpHandler()
-            {
-                Http2Only = true,
-            };
 
-            var options = new GrpcChannelOptions
-            {
-                HttpHandler = handler,
-            };
-
-            _channel = GrpcChannel.ForAddress("http://127.0.0.1:5001/", options);
+            _channel = GrpcChannelx.ForAddress("http://127.0.0.1:5001/");
 
             var serviceClient = MagicOnionClient.Create<IMyFirstService>(_channel);
             var result = await serviceClient.SumAsync(100, 200);
