@@ -30,7 +30,7 @@ namespace SampleClient
                 HttpHandler = handler,
             };
 
-            _channel = GrpcChannel.ForAddress("http://127.0.0.1:5000/", options);
+            _channel = GrpcChannel.ForAddress("http://127.0.0.1:5001/", options);
 
             var serviceClient = MagicOnionClient.Create<IMyFirstService>(_channel);
             var result = await serviceClient.SumAsync(100, 200);
