@@ -9,9 +9,9 @@ namespace SampleClient
 {
     public class GamingHubClient : IGamingHubReceiver
     {
-        Dictionary<string, GameObject> _players = new Dictionary<string, GameObject>();
+        private Dictionary<string, GameObject> _players = new();
 
-        IGamingHub _client;
+        private IGamingHub _client;
 
         private readonly GameObject _ownPlayer;
 
@@ -22,13 +22,10 @@ namespace SampleClient
 
         public async ValueTask<GameObject> ConnectAsync(ChannelBase grpcChannel, string roomName, string playerName)
         {
-            this._client = await StreamingHubClient.ConnectAsync<IGamingHub, IGamingHubReceiver>(grpcChannel, this);
+            _client = await StreamingHubClient.ConnectAsync<IGamingHub, IGamingHubReceiver>(grpcChannel, this);
 
             var roomPlayers = await _client.JoinAsync(roomName, playerName, Vector3.zero, Quaternion.identity);
-            foreach (var player in roomPlayers)
-            {
-                (this as IGamingHubReceiver).OnJoin(player);
-            }
+            foreach (var player in roomPlayers) (this as IGamingHubReceiver).OnJoin(player);
 
             return _players[playerName];
         }
@@ -38,9 +35,8 @@ namespace SampleClient
         public ValueTask LeaveAsync(string playerName)
         {
             foreach (var cube in _players)
-            {
-                if (cube.Value.name != playerName) GameObject.Destroy(cube.Value);
-            }
+                if (cube.Value.name != playerName)
+                    Object.Destroy(cube.Value);
 
             return _client.LeaveAsync();
         }
@@ -78,7 +74,7 @@ namespace SampleClient
             else
             {
                 var playerObject = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                Material LitMat = Resources.Load<Material>("LitMat");
+                var LitMat = Resources.Load<Material>("LitMat");
                 playerObject.GetComponent<Renderer>().material = LitMat;
                 playerObject.name = player.Name;
                 playerObject.transform.SetPositionAndRotation(player.Position, player.Rotation);
@@ -90,10 +86,7 @@ namespace SampleClient
         {
             Debug.Log("Leave Player:" + player.Name);
 
-            if (_players.TryGetValue(player.Name, out var cube))
-            {
-                GameObject.Destroy(cube);
-            }
+            if (_players.TryGetValue(player.Name, out var cube)) Object.Destroy(cube);
         }
 
         void IGamingHubReceiver.OnMove(Player player)
