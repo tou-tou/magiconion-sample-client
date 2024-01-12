@@ -1,14 +1,14 @@
 {
   "dependencies": {
     "com.cysharp.magiconion": {
-      "version": "5.1.8",
+      "version": "6.0.1",
       "depth": 0,
       "source": "registry",
       "dependencies": {},
       "url": "https://package.openupm.com"
     },
     "com.cysharp.yetanotherhttphandler": {
-      "version": "0.1.0",
+      "version": "1.0.0",
       "depth": 0,
       "source": "registry",
       "dependencies": {},

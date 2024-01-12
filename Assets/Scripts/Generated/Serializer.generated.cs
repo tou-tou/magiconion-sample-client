@@ -13,11 +13,11 @@
 
 namespace MessagePack.Resolvers
 {
-    public class MagicOnionSampleResolver : global::MessagePack.IFormatterResolver
+    public class MessagePackSampleResolver : global::MessagePack.IFormatterResolver
     {
-        public static readonly global::MessagePack.IFormatterResolver Instance = new MagicOnionSampleResolver();
+        public static readonly global::MessagePack.IFormatterResolver Instance = new MessagePackSampleResolver();
 
-        private MagicOnionSampleResolver()
+        private MessagePackSampleResolver()
         {
         }
 
@@ -32,7 +32,7 @@ namespace MessagePack.Resolvers
 
             static FormatterCache()
             {
-                var f = MagicOnionSampleResolverGetFormatterHelper.GetFormatter(typeof(T));
+                var f = MessagePackSampleResolverGetFormatterHelper.GetFormatter(typeof(T));
                 if (f != null)
                 {
                     Formatter = (global::MessagePack.Formatters.IMessagePackFormatter<T>)f;
@@ -41,11 +41,11 @@ namespace MessagePack.Resolvers
         }
     }
 
-    internal static class MagicOnionSampleResolverGetFormatterHelper
+    internal static class MessagePackSampleResolverGetFormatterHelper
     {
         private static readonly global::System.Collections.Generic.Dictionary<global::System.Type, int> lookup;
 
-        static MagicOnionSampleResolverGetFormatterHelper()
+        static MessagePackSampleResolverGetFormatterHelper()
         {
             lookup = new global::System.Collections.Generic.Dictionary<global::System.Type, int>(1)
             {
