@@ -1,4 +1,5 @@
-﻿using Grpc.Net.Client;
+﻿using System.IO;
+using Grpc.Net.Client;
 using MagicOnion.Client;
 using MagicOnion.Unity;
 using MessagePack;
@@ -43,7 +44,10 @@ namespace SampleClient
                 {
                     HttpHandler = new Cysharp.Net.Http.YetAnotherHttpHandler()
                     {
-                        Http2Only = true
+                        //Http2Only = true,
+                        RootCertificates =
+                            File.ReadAllText(Path.Combine(Application.streamingAssetsPath, "certificate/server.crt")),
+                        SkipCertificateVerification = false
                     }
                 }));
         }

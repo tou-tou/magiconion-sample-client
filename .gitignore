@@ -75,3 +75,6 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 Build_IL2Cpp
 Assets/Logs
+
+# cert
+*.crt

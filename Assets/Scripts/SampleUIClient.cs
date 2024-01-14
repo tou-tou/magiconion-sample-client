@@ -22,7 +22,7 @@ namespace SampleClient
 
         private async void Start()
         {
-            _channel = GrpcChannelx.ForAddress("http://127.0.0.1:5001/");
+            _channel = GrpcChannelx.ForAddress("https://dummy.example.com:5001/");
 
             var serviceClient = MagicOnionClient.Create<IMyFirstService>(_channel);
             var result = await serviceClient.SumAsync(100, 200);
